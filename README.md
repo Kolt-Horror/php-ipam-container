@@ -14,7 +14,7 @@ docker build -t php-ipam-non-prod .
 After building the image, you can run the PHP IPAM container using:
 
 ```bash
-docker run -d -p 80:80 php-ipam-non-prod
+docker run -d -p 80:80 -p 8443:443 --name ipam php-ipam-non-prod
 ```
 
 ## Environment Variables
@@ -24,9 +24,9 @@ The Docker image uses several environment variables for configuration.
 These variables are used for configuring the MariaDB database within the container.
 
 ```dockerfile
-ENV MARIADB_ROOT_PASSWORD=VMware1! \\
-    MARIADB_DATABASE=phpipam_db \\
-    MARIADB_USER=phpipam_user \\
+ENV MARIADB_ROOT_PASSWORD=VMware1!
+    MARIADB_DATABASE=phpipam_db
+    MARIADB_USER=phpipam_user
     MARIADB_PASSWORD=VMware1!
 ```
 
@@ -34,11 +34,11 @@ ENV MARIADB_ROOT_PASSWORD=VMware1! \\
 These variables are for setting up a self-signed SSL certificate.
 
 ```dockerfile
-ENV SSL_COUNTRY=AU \\
-    SSL_STATE=ACT \\
-    SSL_LOCALITY=Canberra \\
-    SSL_ORGANIZATION=VMware \\
-    SSL_ORGANIZATIONAL_UNIT=Testing \\
+ENV SSL_COUNTRY=AU
+    SSL_STATE=ACT
+    SSL_LOCALITY=Canberra
+    SSL_ORGANIZATION=VMware
+    SSL_ORGANIZATIONAL_UNIT=Testing
     SSL_COMMON_NAME=testing-container.example.com
 ```
 
